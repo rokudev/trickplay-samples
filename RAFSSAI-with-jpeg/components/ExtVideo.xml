@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="ExtVideo" extends="Video" >
+
+<script type="text/brightscript" uri = "pkg:/components/ExtVideo.brs"/>
+
+<children>
+	<PlayerUI id="playerUI" />
+</children>
+
+</component>
