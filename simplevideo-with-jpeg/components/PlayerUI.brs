@@ -1,3 +1,5 @@
+' ********** Copyright 2016-2019 Roku Corp.  All Rights Reserved. **********
+
 Function init()
     initProgressBar()
     initThumbnails()  ' hostPefix and trickInterval are passed in from interface fields'

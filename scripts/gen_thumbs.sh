@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+# Copyright (c) 2016-2019 Roku, Inc. All rights reserved.
+#
 # This script assumes ffmpeg is installed on your Linux or Mac, it gets thumbnails from a stream at fixed intervals
 # For the RAFSSAI-with-jpeg example, the thumbnails were extracted at 5 seconds intervals
 #

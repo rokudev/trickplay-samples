@@ -1,5 +1,5 @@
 '*********************************************************************
-'** (c) 2016-2017 Roku, Inc.  All content herein is protected by U.S.
+'** (c) 2016-2019 Roku, Inc.  All content herein is protected by U.S.
 '** copyright and other applicable intellectual property laws and may
 '** not be copied without the express permission of Roku, Inc., which
 '** reserves all rights.  Reuse of any of this content for any purpose
@@ -61,11 +61,11 @@ sub playContentWithAds()
     while keepPlaying
       msg = wait(0, port)
   		if type(msg) = "roSGNodeEvent"
-          if msg.getField() = "position"
-            ? "position= "; msg.getData()
-          else if msg.getField() = "state"
-            ? "state= "; msg.getData()
-          end if
+          'if msg.getField() = "position"
+          ''  ? "position= "; msg.getData()
+          'else if msg.getField() = "state"
+          ''  ? "state= "; msg.getData()
+          'end if
 
           curAd = RAF.stitchedAdHandledEvent(msg, player)
           'if curAd<> invalid and curAd.evtHandled

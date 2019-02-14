@@ -1,4 +1,4 @@
-' ********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
+' ********** Copyright 2016-2019 Roku Corp.  All Rights Reserved. **********
 
 ' 1st function that runs for the scene component on channel startup
 sub init()

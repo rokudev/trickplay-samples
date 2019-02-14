@@ -1,3 +1,4 @@
+' ********** Copyright 2016-2019 Roku Corp.  All Rights Reserved. **********
 
 Function onKeyEvent(key as String, press as Boolean) as Boolean  'Maps back button to leave video
     if press

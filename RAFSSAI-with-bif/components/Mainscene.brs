@@ -1,5 +1,5 @@
 
-' ********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
+' ********** Copyright 2016-2019 Roku Corp.  All Rights Reserved. **********
 
 function init()
     m.video = m.top.findNode("myVideo")

@@ -1,10 +1,8 @@
+' ********** Copyright 2016-2019 Roku Corp.  All Rights Reserved. **********
+
 Function init()
     initProgressBar()
-
-    hostPrefix = "https://image.roku.com/ZHZscHItc2Ft/thumbnails/RAFSSAI-with-jpeg/"
-    trick1xAdvancePerSec = 5    ' ffwd or rew 1x speed advances position 5 secs every sec'
-                                ' parameter needs to match with thumbnails generation script'
-    initThumbnails(hostPrefix, trick1xAdvancePerSec)
+    initThumbnails()       ' hostPefix and trickInterval are passed in from interface fields'
 
     'set video node'
     m.ExtVideo = invalid
@@ -94,13 +92,13 @@ Function setProgressModePlay()
 end Function
 
 ' *** Thumbnails Section *** '
-Function initThumbnails(hostPrefix, trickInterval)
+Function initThumbnails()
   ' thumbnails nodes'
   m.thumbnails = m.top.findNode("thumbnails")
   m.thumbnails.visible = false
 
-  m.hostPrefix = hostPrefix
-  m.trickInterval = trickInterval
+  'm.hostPrefix = hostPrefix
+  'm.trickInterval = trickInterval
   m.trickPosition = 0
 
   m.trickPlayTimer = createObject("roSGNode", "Timer")
@@ -377,6 +375,8 @@ Function onKeyEvent(key as String, press as Boolean) as Boolean  'Maps back butt
           m.ExtVideo = m.top.getParent()
           m.videoDuration = m.ExtVideo.duration
           m.ExtVideo.observeField("bufferingStatus", "handleBufferingStatus")
+          m.hostPrefix = m.ExtVideo.thumbnailHostPrefix
+          m.trickInterval = m.ExtVideo.thumbnailIntervalInSecs
         end if
 
         if key = "fastforward" or key = "rewind"
