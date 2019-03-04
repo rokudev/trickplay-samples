@@ -330,6 +330,10 @@ Function handleBufferingStatus(msg)
       hideLoadingBar()
       hideProgressBar()
       hideThumbnails()
+
+      ' this resets the video reference every time playerUI is invoked '
+      m.ExtVideo.unobserveField("bufferingStatus")
+      m.ExtVideo = invalid
     end if
   end if
 end Function
