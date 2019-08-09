@@ -9,8 +9,7 @@ sub init()
   m.Title       = m.top.findNode("Title")
   m.Video       = m.top.findNode("Video")
   m.Warning     = m.top.findNode("WarningDialog")
-  m.Exiter      = m.top.findNode("Exiter")
-  m.playerUI    = m.top.findNode("playerUI")
+  'm.Exiter      = m.top.findNode("Exiter")
   setContent()
   m.ButtonGroup.setFocus(true)
   m.ButtonGroup.observeField("buttonSelected","onButtonSelected")
@@ -20,13 +19,11 @@ sub onButtonSelected()
   'Ok'
   if m.ButtonGroup.buttonSelected = 0
       m.Video.visible = "true"
-      'm.Video.focusable = true
-      m.PlayerUI.setFocus(true)
-	? "m.Video.content= "; m.Video.content
-    m.Video.control = "play"
+      m.Video.setFocus(true)
+      m.Video.control = "play"
   'Exit button pressed'
   else
-    m.Exiter.control = "RUN"
+    m.top.exitApp = true
   end if
 end sub
 

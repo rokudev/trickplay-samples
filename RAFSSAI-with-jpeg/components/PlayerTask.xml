@@ -8,7 +8,6 @@
 
 <interface>
     <field id="video" type="node" />
-    <field id="playerUI" type="node" />
     <field id="adPods" type="array" />
 </interface>
 

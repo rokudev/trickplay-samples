@@ -64,8 +64,9 @@ sub playContentWithAds()
           'if msg.getField() = "position"
           ''  ? "position= "; msg.getData()
           'else if msg.getField() = "state"
-          ''  ? "state= "; msg.getData()
-          'end if
+          if msg.getField() = "state"
+            ? "state= "; msg.getData()
+          end if
 
           curAd = RAF.stitchedAdHandledEvent(msg, player)
           'if curAd<> invalid and curAd.evtHandled
@@ -75,13 +76,11 @@ sub playContentWithAds()
               keepPlaying = false
               videoNode.visible = false
               videoNode.control = "stop"
-              'videoNode.setFocus(true)
-              playerUI.setFocus(true)
+              videoNode.setFocus(true)
             end if
             if curAd.adCompleted
               ? "ad completed."
-              'videoNode.setFocus(true)
-              playerUI.setFocus(true)
+              videoNode.setFocus(true)
             end if
           end if
   		end if

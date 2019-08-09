@@ -39,12 +39,17 @@ sub showHeroScreen()
   screen.setMessagePort(m.port)
   scene = screen.CreateScene("SimpleVideoScene")
   screen.show()
+  scene.observeField("exitApp", m.port) ' Allows app exit'
 
   while(true)
     msg = wait(0, m.port)
     msgType = type(msg)
     if msgType = "roSGScreenEvent"
       if msg.isScreenClosed() then return
+    else if msgType = "roSGNodeEvent"
+      if msg.getField() = "exitApp"
+        return
+      end if
     end if
   end while
 end sub

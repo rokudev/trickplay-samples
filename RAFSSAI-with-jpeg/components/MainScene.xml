@@ -2,11 +2,15 @@
 <!-- Copyright 2016-2019 Roku Corp.  All Rights Reserved. -->
 <component name="Mainscene" extends="Scene" >
 
+<interface>
+  <field id="exitApp" type="boolean" value="false"/>
+</interface>
+
 <script type="text/brightscript" uri = "pkg:/components/Mainscene.brs"/>
 
 <children>
 <!-- Initialize video node -->
-   	<ExtVideo id="myVideo" width="1920" height="1080" />
+   	<ExtVideoPlayerUI id="myVideo" width="1920" height="1080" />
 </children>
 
 </component>
