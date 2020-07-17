@@ -27,7 +27,7 @@ splash_min_time=0
 ui_resolutions=fhd
 
 #video_stream_format=dash
-#video_stream_url=https://jonathanbduval.com/roku/trickplay/bbb_with_multiple_tiled_thumbnails.mpd
+#video_stream_url=https://image.roku.com/ZHZscHItc2Ft/roku/trickplay/bbb-with-multiple-tiled-thumbnails.mpd
 video_stream_format=hls
-video_stream_url=https://jonathanbduval.com/roku/trickplay/sampleHlsPlaylist/master.m3u8
-bs_const=thumbnailDebug=true;useMergeGroupsWorkaround=true
+video_stream_url=https://image.roku.com/ZHZscHItc2Ft/roku/trickplay/master.m3u8
+bs_const=thumbnailDebug=true;useMergeGroupsWorkaround=false
