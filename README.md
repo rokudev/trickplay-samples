@@ -18,4 +18,4 @@ The five samples are summarized as follows:
 
 * [simplevideo-with-jpeg](/simplevideo-with-jpeg) uses custom JPEG files for thumbnails, which are generated using the script [gen-thumbs.sh](/scripts/gen-thumbs.sh) and extracted at constant intervals. A group of five Posters that represent 5-second intervals are used to display the thumbnails.
 
-* [RAFSSAI-with-jpeg](/RAF-SSAI-with-jpeg) is similar to the previous sample using custom JPEG files, but it is aware of ad pods using metadata from the Roku Advertising Framework and ads are not displayed in the trick play thumbnails.
+* [RAFSSAI-with-jpeg](/RAFSSAI-with-jpeg) is similar to the previous sample using custom JPEG files, but it is aware of ad pods using metadata from the Roku Advertising Framework and ads are not displayed in the trick play thumbnails.
