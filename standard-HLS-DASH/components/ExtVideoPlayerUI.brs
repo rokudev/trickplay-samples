@@ -5,7 +5,11 @@ Function init()
     m.ExtVideo = m.top
     m.top.observeField("state", "handleStateChange")
     m.top.observeField("bufferingStatus", "handleBufferingStatus")
-    m.top.observeField("thumbnailTiles", "initCustomThumbnails")
+    if m.global.version >= "940"
+      m.top.observeField("thumbnailTiles", "initCustomThumbnails")
+    else
+      show94RequiredDialog()
+    end if
 
     initProgressBar()
     initThumbnails()
@@ -157,32 +161,27 @@ Function startSeeking()  ' key is either "fastforward" or "rewind"
 end Function
 
 ' The pauseSeeking function is called only when the user presses the "left" or
-' "right" button on the remote. The m.trickPlaySpeed variable is set to 0 initially
-' and modified in order for the updateThumbnails() function to know what direction
-' to move the thumbnails in. The m.trickPlaySpeed is reset to 0 when the update
-' is complete.
+' "right" button on the remote.
 Function pauseSeeking(key, position)  ' key is either "left" or "right"
   m.trickPlayTimer.control = "STOP"
   m.trickPlaySpeed = 0
-  showThumbnails(position)
+
   if key = "right"    ' shift thumbnails to the left - forward
-    m.trickPlaySpeed = 1
-    if position + m.trickInterval <= m.videoDuration
+    if position + m.trickOffset + m.trickInterval <= m.videoDuration
         m.trickOffset += m.trickInterval
     else
         m.trickOffset = m.videoDuration - m.ExtVideo.position
     end if
   else if key = "left"    ' shift thumbnails to the right - reverse
-    m.trickPlaySpeed = -1
-    if position - m.trickInterval >= 0
+    if position + m.trickOffset - m.trickInterval >= 0
         m.trickOffset -= m.trickInterval
     else
         m.trickOffset = m.ExtVideo.position * -1
     end if
   end if
-  updateThumbnails()
-  m.trickPlaySpeed = 0
-  showProgressBar(m.ExtVideo.position + m.trickOffset)
+
+  showThumbnails(position + m.trickOffset)
+  showProgressBar(position + m.trickOffset)
 end Function
 
 ' We finished performing trickplay functions by pressing "play" or "ok" button.
@@ -196,18 +195,8 @@ Function endSeeking()
   setProgressModePlay()
 end Function
 
-' Display the thumbnails. The channel needs to calculate the current center sprite
-' index and the row/column index within the sprite sheet to display the correct
-' thumbnail tile. The rest of the thumbnails will be rendered based on what the
-' center thumbnail displays to reduce the need to recalculate indexes for every
-' poster.
 Function showThumbnails(position) as void
-    m.centerSpriteIndex = getSpriteIndex(position)
-    'skip any additional show Thumbnails if center sprite index is -1'
-    if m.centerSpriteIndex = -1 then return
-
-    positionToIndexes(position)
-    renderPosters()
+    renderPosters(position)
     m.thumbnails.visible = true
 end Function
 
@@ -233,9 +222,8 @@ Function handleTrickPlayTimer()
             m.trickOffset = m.ExtVideo.position * -1 ' Seek to t = 0
         end if
     end if
-    if m.centerSpriteIndex <> -1 then
-      updateThumbnails()
-    end if
+
+    showThumbnails(m.ExtVideo.position + m.trickOffset)
     showProgressBar(m.ExtVideo.position + m.trickOffset)
 end Function
 
@@ -315,8 +303,7 @@ Function onKeyEvent(key as String, press as Boolean) as Boolean  'Maps back butt
             handled = true
         else if key = "left" or key = "right"
             m.ExtVideo.control = "pause"
-            position = m.ExtVideo.position + m.trickOffset
-            pauseSeeking(key, position)
+            pauseSeeking(key, m.ExtVideo.position)
             handled = true
         else if key = "play" or key = "OK"
             if m.ExtVideo.state = "playing"
@@ -335,6 +322,7 @@ Function onKeyEvent(key as String, press as Boolean) as Boolean  'Maps back butt
             handled = true
         else if key = "back"
             m.ExtVideo.control = "stop"
+            endSeeking()
             hideProgressBar()
             hideThumbnails()
         end if
@@ -342,3 +330,19 @@ Function onKeyEvent(key as String, press as Boolean) as Boolean  'Maps back butt
 
 	return handled
 end Function
+
+sub show94RequiredDialog()
+  m.dialog94Required = CreateObject("roSGNode", "Dialog")
+  m.dialog94Required.id = "dialog94Required"
+  m.dialog94Required.title = "Roku OS 9.4 required"
+  m.dialog94Required.observeField("buttonSelected","dismissDialogAndExit")
+  m.dialog94Required.message = "Error: this sample channel requires Roku OS 9.4.0 or newer.  Thumbnails will not be displayed."
+  m.dialog94Required.buttons = ["Dismiss"]
+  m.top.getScene().dialog = m.dialog94Required
+end sub
+
+sub dismissDialogAndExit()
+  scene = m.top.getScene()
+  scene.dialog.close = true
+  scene.dialog  = invalid
+end sub

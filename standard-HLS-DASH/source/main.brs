@@ -32,12 +32,17 @@ end sub
 sub showHeroScreen()
 #if thumbnailDebug
   print "main.brs - [showHeroScreen]"
-#end if 
+#end if
 
   screen = CreateObject("roSGScreen")
   m.port = CreateObject("roMessagePort")
   screen.setMessagePort(m.port)
   scene = screen.CreateScene("SimpleVideoScene")
+
+  m.global = screen.getGlobalNode()
+  m.global.addField("version", "string", false)
+  m.global.version = getOSVersion()    ' format OS major + minor, e.g 900 or 910'
+
   screen.show()
   scene.observeField("exitApp", m.port) ' Allows app exit'
 
@@ -53,3 +58,13 @@ sub showHeroScreen()
     end if
   end while
 end sub
+
+Function getOsVersion() as string
+  version = createObject("roDeviceInfo").GetVersion()
+
+  major = Mid(version, 3, 1)
+  minor = Mid(version, 5, 2)
+  'build = Mid(version, 8, 5)
+
+  return major + minor
+end Function

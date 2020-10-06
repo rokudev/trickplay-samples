@@ -6,9 +6,9 @@
 
 # Channel Details
 title=ThumbnailTrickplayBar
-subtitle=Thumbnail trickplaybar example using DASH thumbnails from incoming stream.
+subtitle=Thumbnail trickplaybar example using HLS/DASH thumbnails from incoming stream.
 major_version=1
-minor_version=3
+minor_version=4
 build_version=0
 
 # Channel Assets
@@ -30,4 +30,4 @@ ui_resolutions=fhd
 #video_stream_url=https://image.roku.com/ZHZscHItc2Ft/roku/trickplay/bbb-with-multiple-tiled-thumbnails.mpd
 video_stream_format=hls
 video_stream_url=https://image.roku.com/ZHZscHItc2Ft/roku/trickplay/master.m3u8
-bs_const=thumbnailDebug=true;useMergeGroupsWorkaround=false
+bs_const=thumbnailDebug=true
