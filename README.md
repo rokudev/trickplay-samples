@@ -1,3 +1,11 @@
+# trickplay-samples has moved to GitLab
+
+**This project has moved.** Development now continues at **https://gitlab.com/rokudev/trickplay-samples**.
+
+This GitHub repository is archived and read-only. It is kept only as a pointer to the new home. Please open new issues and merge requests on GitLab.
+
+---
+
 # trickplay-sample-channels
 The five samples in this repo demonstrate different ways to generate and incorporate thumbnails for trick play. The samples vary based on whether they use standards, BIF or custom JPEG files for the thumbnails, whether they use the native or a custom video player, and whether server-side ads are included in the thumbnails.
 
